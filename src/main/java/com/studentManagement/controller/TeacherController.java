@@ -61,13 +61,11 @@ public class TeacherController
 
     User user;
 
-
-
-
     @ModelAttribute
     public void commonUser(Principal p, Model m)
     {
-        if (p != null) {
+        if (p != null)
+        {
             String email = p.getName();
             user = userRepo.findByUserId(email);
             m.addAttribute("user", user);
@@ -78,12 +76,6 @@ public class TeacherController
     {
         Teacher t = teacherRepository.findByTeacherId(user.getUserId());
         m.addAttribute("teacher", t);
-
-//            if (t.getImage() != null) {
-//                byte[] imageBytes = t.getImage().getBytes(1, (int) t.getImage().length());
-//                System.out.println(imageBytes.length);
-//                m.addAttribute("teacherImage", ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(imageBytes));
-//            }
         return "teacher_profile";
     }
 
@@ -339,6 +331,31 @@ public class TeacherController
     {
         return fees.handleFileUpload1(file,model);
     }
+
+    @GetMapping("/uploadTeachers/form")
+    public String TeachersUploadForm()
+    {
+        return fees.showUploadForm2();
+    }
+
+    @PostMapping("/uploadTeachers/upload")
+    public String TeachershandleFileUpload(@RequestParam("file") MultipartFile file, Model model)
+    {
+        return fees.handleFileUpload2(file,model);
+    }
+
+    @GetMapping("/uploadHostelFee/form")
+    public String HostelFeeUploadForm()
+    {
+        return fees.showUploadForm3();
+    }
+    @PostMapping("uploadHostelFees/upload")
+    public String FeesFileUpload(@RequestParam("file") MultipartFile file, Model model)
+    {
+        return fees.handleFileUpload3(file,model);
+    }
+
+
 
 //    @PostMapping("/post")
 //    public String method544(@RequestParam("file") MultipartFile file)

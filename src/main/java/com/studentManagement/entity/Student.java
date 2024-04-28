@@ -14,17 +14,12 @@ public class Student
 	@Id
 	@Column(name = "student_id")
 	private String id;
-
-//	@Lob
-//	@Column(name="image",nullable = true)
-//	private Blob image;
-
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_name",unique = true)
 	private String lastName;
-	
+
 	@Column(name = "email", unique = true)
 	private String email;
 
@@ -69,7 +64,7 @@ public class Student
 	{
 
 	}
-	public Student(String id, Blob image, String firstName, String lastName, String email, String teacherId,String dateofbirth,String Mobileno,String Department,String Regulation,List<first> first,List<second> second,List<third> third,List<fourth> fourth,List<fifth> fifth,List<sixth> sixth,List<seventh> seventh,List<eighth> eighth, List<Fees> Fees)
+	public Student(String id, Blob image, String firstName, String lastName, String email, String teacherId,String Dateofbirth,String mobileno,String Department,String Regulation,List<first> first,List<second> second,List<third> third,List<fourth> fourth,List<fifth> fifth,List<sixth> sixth,List<seventh> seventh,List<eighth> eighth, List<Fees> Fees)
 	{
 		super();
 		this.id=id;
@@ -77,8 +72,8 @@ public class Student
 		this.lastName = lastName;
 		this.email = email;
 		this.teacherId=teacherId;
-		this.dateofbirth=dateofbirth;
-		this.Mobileno=Mobileno;
+		this.dateofbirth=Dateofbirth;
+		Mobileno=mobileno;
 		this.first=first;
 		this.second=second;
 		this.third=third;
@@ -86,6 +81,8 @@ public class Student
 		this.fifth=fifth;
 		this.seventh=seventh;
 		this.eighth=eighth;
+		this.Regulation=Regulation;
+		this.Department=Department;
 		this.fees = fees;
 	}
 
@@ -215,7 +212,7 @@ public class Student
 		this.password=password;
 	}
 
-//	public Blob getImage()
+	//	public Blob getImage()
 //	{
 //		return image;
 //	}
@@ -227,7 +224,6 @@ public class Student
 	{
 		return String.valueOf(dateofbirth);
 	}
-
 	public void setDateofbirth(String dateofbirth)
 	{
 		this.dateofbirth = dateofbirth;
@@ -237,7 +233,7 @@ public class Student
 		return Mobileno;
 	}
 
-	public void setMobileno(String mobileno) {
+	public void setMobileno(String Mobileno) {
 		this.Mobileno = Mobileno;
 	}
 

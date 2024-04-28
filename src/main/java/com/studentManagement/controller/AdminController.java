@@ -137,21 +137,13 @@ public class AdminController
 		use1.setPassword(new BCryptPasswordEncoder().encode(teacher.getPassword()));
 		userRepo.save(use1);
 		Teacher teach1=new Teacher();
-//		if (!imageFile.isEmpty()) {
-//			byte[] imageBytes = new byte[0];
-//			try {
-//				imageBytes = imageFile.getBytes();
-//				Blob blob = new javax.sql.rowset.serial.SerialBlob(imageBytes);
-//				teach1.setImage(blob);
-//			} catch (Exception e) {
-//				throw new RuntimeException(e);
-//			}
-//		}
+
 		teach1.setName(teacher.getName());
 		teach1.setEmail(teacher.getEmail());
 		teach1.setTeacherId(teacher.getTeacherId());
 		teach1.setClassId(teacher.getClassId());
 		teach1.setPassword(teacher.getPassword());
+
 		teacherRepository.save((teach1));
 		return listTeachers(m,principal);
 	}
@@ -171,19 +163,24 @@ public class AdminController
 		Student std=new Student();
 		try
 		{
-//			if (!imageFile.isEmpty())
-//			{
-//				byte[] imageBytes = imageFile.getBytes();
-//				Blob blob = new javax.sql.rowset.serial.SerialBlob(imageBytes);
-//				std.setImage(blob);
-//			}
-			std.setId(student.getId());
-			std.setFirstName(student.getFirstName());
-			std.setLastName(student.getLastName());
-			std.setEmail(student.getEmail());
-			std.setPassword(student.getPassword());
-			std.setTeacherId(student.getTeacherId());
-			studentRepository.save(std);
+			if(!(student.getFirstName().trim().length()==0)&&!(student.getLastName().trim().length()==0)&&!(student.getId().trim().length()==0)&&!(student.getEmail().trim().length()==0)&& !(student.getPassword().trim().length()==0) && !(student.getMobileno().trim().length()==0) &&!(student.getDateofbirth().trim().length()==0) &&!(student.getPassword().trim().length()==0) &&!(student.getDepartment().trim().length()==0) &&!(student.getRegulation().trim().length()==0))
+			{
+				std.setId(student.getId());
+				std.setFirstName(student.getFirstName());
+				std.setLastName(student.getLastName());
+				std.setEmail(student.getEmail());
+				std.setPassword(student.getPassword());
+				std.setTeacherId(student.getTeacherId());
+				std.setDateofbirth(student.getDateofbirth());
+				std.setMobileno(student.getMobileno());
+				std.setDepartment(student.getDepartment());
+				std.setRegulation(student.getRegulation());
+				studentRepository.save(std);
+			}
+			else
+			{
+				return "error";
+			}
 			return listStudents(m,principal);
 		}
 		catch(DataIntegrityViolationException e)
@@ -193,7 +190,7 @@ public class AdminController
 		catch(Exception e)
 		{
 			System.out.println(e.getMessage());
-			return "errorr";
+			return "error";
 		}
 	}
 

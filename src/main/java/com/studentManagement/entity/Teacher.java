@@ -24,22 +24,20 @@ public class Teacher {
 
 
     @Column(name = "email", unique = true)
-    @Email(message = "Email should be valid and end with @gmail.com")
     private String email;
 
     @Id
     @Column(name="teacher_id",unique=true)
-    @NotNull
     private String teacherId;
 
     @Column(name="class_id",unique=true)
-    @NotNull
     private String classId;
 
 
     @Column(name="password")
     private String password;
-    public Teacher() {
+    public Teacher()
+    {
 
     }
 

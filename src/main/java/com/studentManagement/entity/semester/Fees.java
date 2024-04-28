@@ -13,19 +13,15 @@ public class Fees
     private Long id;
 
     @Column(name = "id1")
-    @Length(min=10,max=10)
     private String id1;
 
     @Column(name="date")
-    @NotNull
     private String date;
 
     @Column(name="paid")
-    @NotNull
     private String paid;
 
     @Column(name="balance")
-    @NotNull
     private String balance;
 
     @Column(name="transactionId",unique = true)

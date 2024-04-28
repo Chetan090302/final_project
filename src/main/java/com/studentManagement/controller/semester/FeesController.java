@@ -1,5 +1,6 @@
 package com.studentManagement.controller.semester;
 import com.studentManagement.entity.Student;
+import com.studentManagement.entity.Teacher;
 import com.studentManagement.entity.semester.Fees;
 import com.studentManagement.entity.semester.first;
 import com.studentManagement.repository.semester.FeesInterface;
@@ -71,6 +72,10 @@ public class FeesController
         return "uploadStudents";
     }
 
+//    public String showUploadFrom2()
+//    {
+//        return "uploadTeachers";
+//    }
     public String handleFileUpload1(MultipartFile file, Model model)
     {
         try
@@ -85,5 +90,47 @@ public class FeesController
             model.addAttribute("error", "Error processing the file.");
         }
         return "students";
+    }
+
+    public String handleFileUpload2(MultipartFile file, Model model)
+    {
+        try
+        {
+            List<Teacher> entities = StudentFileService.processExcelFile1(file);
+            model.addAttribute("teachers", entities);
+            model.addAttribute("message", "File uploaded and data saved successfully!");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            model.addAttribute("error", "Error processing the file.");
+        }
+        return "teachers";
+    }
+
+
+    public String showUploadForm2() {
+        return "uploadTeachers";
+    }
+
+    public String showUploadForm3()
+    {
+        return "uploadfees";
+    }
+
+    public String handleFileUpload3(MultipartFile file, Model model)
+    {
+        try
+        {
+            List<Fees> entities = StudentFileService.processExcelFile2(file);
+            model.addAttribute("students", entities);
+            model.addAttribute("message", "File uploaded and data saved successfully!");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            model.addAttribute("error", "Error processing the file.");
+        }
+        return "Fees";
     }
 }

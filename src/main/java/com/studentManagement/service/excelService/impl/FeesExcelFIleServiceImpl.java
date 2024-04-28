@@ -26,8 +26,8 @@ import java.util.List;
 
 @Service
 @Transactional
-public class FeesExcelFIleServiceImpl implements FeesExcelFileService {
-
+public class FeesExcelFIleServiceImpl implements FeesExcelFileService
+{
     @Autowired
     FeesInterface feesRepository;
 
