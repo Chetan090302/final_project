@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.security.Principal;
 import java.sql.Blob;
 import java.sql.SQLException;
-
 import com.studentManagement.entity.Student;
 import com.studentManagement.entity.Teacher;
 import com.studentManagement.repository.StudentRepository;
@@ -137,7 +136,7 @@ public class AdminController
 		use1.setPassword(new BCryptPasswordEncoder().encode(teacher.getPassword()));
 		userRepo.save(use1);
 		Teacher teach1=new Teacher();
-
+//admin
 		teach1.setName(teacher.getName());
 		teach1.setEmail(teacher.getEmail());
 		teach1.setTeacherId(teacher.getTeacherId());
