@@ -1,5 +1,4 @@
 package com.studentManagement.config;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,23 +11,27 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
-
+public class SecurityConfig
+{
+	//hello
 	@Autowired
 	public CustomAuthSucessHandler sucessHandler;
 	
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
+	public BCryptPasswordEncoder passwordEncoder()
+	{
 		return new BCryptPasswordEncoder();
 	}
 
 	@Bean
-	public UserDetailsService getDetailsService() {
+	public UserDetailsService getDetailsService()
+	{
 		return new CustomUserDetailsService();
 	}
 
 	@Bean
-	public DaoAuthenticationProvider getAuthenticationProvider() {
+	public DaoAuthenticationProvider getAuthenticationProvider()
+	{
 		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 		daoAuthenticationProvider.setUserDetailsService(getDetailsService());
 		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
@@ -39,7 +42,8 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
 	{
 		http.csrf().disable()
-		.authorizeHttpRequests().requestMatchers("/admin/**").hasRole("ADMIN")
+		.authorizeHttpRequests()
+				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/user/**").hasRole("USER")
 				.requestMatchers("/teacher/**").hasRole("TEACHER")
 				.requestMatchers("/**").permitAll()
@@ -49,5 +53,4 @@ public class SecurityConfig {
 		.permitAll();
 		return http.build();
 	}
-
 }
