@@ -9,11 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
-
 @Controller
 @RequestMapping("/first")
 public class FirstSemesterController
@@ -56,8 +53,6 @@ public class FirstSemesterController
         model.addAttribute("first", results);
         return "firstMarks";
     }
-
-//    @GetMapping("/getdetails/{value}")
     public String method2(@PathVariable String value,Model model)
     {
         List<first> std2=repo.findUsersWithId(value);

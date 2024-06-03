@@ -10,8 +10,8 @@ import com.studentManagement.entity.User;
 import com.studentManagement.repository.UserRepo;
 
 @Component
-public class CustomUserDetailsService implements UserDetailsService {
-
+public class CustomUserDetailsService implements UserDetailsService
+{
 	@Autowired
 	private UserRepo userRepo;
 
@@ -19,13 +19,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
 	{
 		User user = userRepo.findByUserId(username.toUpperCase());
-		System.out.println(user);
-		if (user == null) {
+		if (user == null)
+		{
 			throw new UsernameNotFoundException("user not found");
-		} else {
+		}
+		else
+		{
 			return new CustomUser(user);
 		}
-
 	}
-
 }

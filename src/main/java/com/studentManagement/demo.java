@@ -21,6 +21,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class demo {
+
+//	$2a$10$FvtOjbYoCLK.xL49Ytqt6.p8mkrpbWwsleRFZc2dlQ2jrBt27ybIy
+
 	public static void main(String[] args) {
 		System.out.println(new BCryptPasswordEncoder().encode("1234"));
 	}

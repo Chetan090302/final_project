@@ -7,25 +7,28 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class CustomAuthSucessHandler implements AuthenticationSuccessHandler {
-
+public class CustomAuthSucessHandler implements AuthenticationSuccessHandler
+{
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-			Authentication authentication) throws IOException, ServletException {
+			Authentication authentication) throws IOException, ServletException
+	{
 		Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-
-		if (roles.contains("ROLE_ADMIN")) {
+		if (roles.contains("ROLE_ADMIN"))
+		{
 			response.sendRedirect("/admin/profile");
-		} else if(roles.contains("ROLE_USER")) {
+		}
+		else if(roles.contains("ROLE_USER"))
+		{
 			response.sendRedirect("/user/profile");
 		}
-		else if(roles.contains("ROLE_TEACHER")){
+		else if(roles.contains("ROLE_TEACHER"))
+		{
 			response.sendRedirect("/teacher/profile");
 		}
 	}
